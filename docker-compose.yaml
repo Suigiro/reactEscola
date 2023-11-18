@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+  database_unico:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: desafio
+      MYSQL_USER: user_desafio
+      MYSQL_PASSWORD: desafio@123
+      MYSQL_ROOT_PASSWORD: root@123
+    ports:
+      - "3306:3306"
+    networks:
+      - testeNet
+    volumes:
+      - ./data:/var/lib/mysql
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+networks:
+  testeNet:
+    driver: bridge
